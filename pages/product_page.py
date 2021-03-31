@@ -12,11 +12,11 @@ class ProductPage(BasePage):
         assert "Coders at Work" == product_name_link.text, "error"
 
     def should_not_be_message_one(self):
-        assert self.browser.find_element(*ProductPageLocators.MESSAGE), \
+        assert self.browser.is_not_element_present(*ProductPageLocators.MESSAGE), \
             "Success message is presented, but should not be"
         assert True
 
     def should_be_message_two(self):
-        assert self.browser.find_element(*ProductPageLocators.MESSAGE), \
+        assert self.browser.is_disappeared(*ProductPageLocators.MESSAGE), \
             "Success message is dissapered, but should not be"
         assert True
