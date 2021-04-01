@@ -5,21 +5,15 @@ import math
 
 class ProductPage(BasePage):
 
-    def get_product_name(self):
-        return self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+    def should_be_book_price(self):
+        book_price = self.browser.find_element(*ProductPageLocators.BOOK_PRICE).text
+        basket_price = self.browser.find_element(*ProductPageLocators.BOOK_PRICE_BASKET).text
+        assert book_price == basket_price, "Price is not same"
 
-    def get_price(self):
-        return self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
-
-    def check_alert_product_added(self,product_name):
-        expected_alert=product_name+' has been added to your basket.'
-        alert = self.browser.find_elements(*ProductPageLocators.ALERT)[0].text
-        assert expected_alert in alert, f"Should be '{expected_alert}' in alert:'{alert}'"
-
-    def check_alert_sum_in_basket(self,price):
-        expected_alert='Your basket total is now '+price
-        alert = self.browser.find_elements(*ProductPageLocators.ALERT)[2].text
-        assert expected_alert in alert, f"Should be '{expected_alert}' in alert:'{alert}'"
+    def should_be_book_name(self):
+        book_name = self.browser.find_element(*ProductPageLocators.BOOK_NAME).text
+        book_basket = self.browser.find_element(*ProductPageLocators.BOOK_NAME_BASKET).text
+        assert book_name == book_basket, "Name is not same"
 
     def add_to_basket(self):
         add_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)

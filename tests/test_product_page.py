@@ -22,13 +22,13 @@ class TestUserAddToBasketFromProductPage:
 
     @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
-        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear"
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
         page = ProductPage(browser, link)
         page.open()
         page.add_to_basket()
-        page.solve_quiz_and_get_code()
-        page.check_alert_product_added(page.get_product_name())
-        page.check_alert_sum_in_basket(page.get_price())
+        #page.solve_quiz_and_get_code()
+        page.should_be_book_name()
+        page.should_be_book_price()
         time.sleep(1)
 
     def test_user_cant_see_success_message(self, browser):
